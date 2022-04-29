@@ -17,10 +17,11 @@
 
 package org.jetbrains.anko.constraint.layout
 
-import android.support.annotation.IdRes
-import android.support.constraint.ConstraintLayout
-import android.support.constraint.ConstraintSet
 import android.view.View
+import androidx.annotation.IdRes
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
+import org.jetbrains.anko.AnkoException
 import org.jetbrains.anko.constraint.layout.ConstraintSetBuilder.Connection.BasicConnection
 import org.jetbrains.anko.constraint.layout.ConstraintSetBuilder.Side
 import org.jetbrains.anko.internals.AnkoInternals
@@ -30,17 +31,18 @@ val ConstraintLayout.matchConstraint
     get() = ConstraintLayout.LayoutParams.MATCH_CONSTRAINT
 
 fun ConstraintLayout.applyConstraintSet(init: ConstraintSetBuilder.() -> Unit): ConstraintSet =
-        constraintSet(init).also { it.applyTo(this) }
+    constraintSet(init).also { it.applyTo(this) }
 
 fun ConstraintLayout.constraintSet(init: ConstraintSetBuilder.() -> Unit): ConstraintSet =
-        ConstraintSetBuilder().also { it.clone(this) }.apply(init)
+    ConstraintSetBuilder().also { it.clone(this) }.apply(init)
 
 class ViewConstraintBuilder(
-        private @IdRes val viewId: Int,
-        private val constraintSetBuilder: ConstraintSetBuilder) {
+    @IdRes private val viewId: Int,
+    private val constraintSetBuilder: ConstraintSetBuilder
+) {
 
     infix fun Pair<Side, Side>.of(@IdRes targetViewId: Int): BasicConnection =
-            constraintSetBuilder.run { (first of viewId) to (second of targetViewId) }
+        constraintSetBuilder.run { (first of viewId) to (second of targetViewId) }
 
     infix fun Pair<Side, Side>.of(targetView: View): BasicConnection = this of targetView.id
 
@@ -230,6 +232,7 @@ class ViewConstraintBuilder(
 }
 
 class ConstraintSetBuilder : ConstraintSet() {
+
     operator fun Int.invoke(init: ViewConstraintBuilder.() -> Unit) {
         ViewConstraintBuilder(this, this@ConstraintSetBuilder).apply(init)
     }
@@ -259,18 +262,18 @@ class ConstraintSetBuilder : ConstraintSet() {
     fun connect(vararg connections: Connection) {
         for (connection in connections) {
             when (connection) {
-                is Connection.MarginConnection -> connect(
-                        connection.from.viewId,
-                        connection.from.sideId,
-                        connection.to.viewId,
-                        connection.to.sideId,
-                        connection.margin
-                )
                 is BasicConnection -> connect(
-                        connection.from.viewId,
-                        connection.from.sideId,
-                        connection.to.viewId,
-                        connection.to.sideId
+                    connection.from.viewId,
+                    connection.from.sideId,
+                    connection.to.viewId,
+                    connection.to.sideId
+                )
+                is Connection.MarginConnection -> connect(
+                    connection.from.viewId,
+                    connection.from.sideId,
+                    connection.to.viewId,
+                    connection.to.sideId,
+                    connection.margin
                 )
             }
         }
@@ -297,13 +300,14 @@ class ConstraintSetBuilder : ConstraintSet() {
 
         val sideId: Int
             get() = when(this) {
-                is ViewSide.Left -> ConstraintSet.LEFT
-                is ViewSide.Right -> ConstraintSet.RIGHT
-                is ViewSide.Top -> ConstraintSet.TOP
-                is ViewSide.Bottom -> ConstraintSet.BOTTOM
-                is ViewSide.Baseline -> ConstraintSet.BASELINE
-                is ViewSide.Start -> ConstraintSet.START
-                is ViewSide.End -> ConstraintSet.END
+                is Left -> LEFT
+                is Right -> RIGHT
+                is Top -> TOP
+                is Bottom -> BOTTOM
+                is Baseline -> BASELINE
+                is Start -> START
+                is End -> END
+                else -> throw AnkoException()
             }
     }
 
