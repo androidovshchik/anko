@@ -19,9 +19,9 @@ package org.jetbrains.anko.appcompat.v7
 import android.content.Context
 import android.content.DialogInterface
 import android.graphics.drawable.Drawable
-import android.support.v7.app.AlertDialog
 import android.view.KeyEvent
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import org.jetbrains.anko.AlertBuilder
 import org.jetbrains.anko.AlertBuilderFactory
 import org.jetbrains.anko.internals.AnkoInternals
@@ -31,6 +31,7 @@ import kotlin.DeprecationLevel.ERROR
 val Appcompat: AlertBuilderFactory<AlertDialog> = ::AppcompatAlertBuilder
 
 internal class AppcompatAlertBuilder(override val ctx: Context) : AlertBuilder<AlertDialog> {
+
     private val builder = AlertDialog.Builder(ctx)
 
     override var title: CharSequence

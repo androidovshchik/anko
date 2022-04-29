@@ -20,33 +20,6 @@ package org.jetbrains.anko.collections
 import android.util.SparseArray
 import android.util.SparseBooleanArray
 import android.util.SparseIntArray
-import java.util.ConcurrentModificationException
-
-/**
- * Iterate the receiver [Array] using an index.
- *
- * @f an action to invoke on each array element.
- */
-@Deprecated(message = "Use the native Kotlin version", replaceWith = ReplaceWith("forEach(f)"))
-inline fun <T> Array<T>.forEachByIndex(f: (T) -> Unit) {
-    val lastIndex = size - 1
-    for (i in 0..lastIndex) {
-        f(get(i))
-    }
-}
-
-/**
- * Iterate the receiver [Array] using an index.
- *
- * @f an action to invoke on each array element (index, element).
- */
-@Deprecated(message = "Use the native Kotlin version", replaceWith = ReplaceWith("forEachIndexed(f)"))
-inline fun <T> Array<T>.forEachWithIndex(f: (Int, T) -> Unit) {
-    val lastIndex = size - 1
-    for (i in 0..lastIndex) {
-        f(i, get(i))
-    }
-}
 
 /**
  * Iterate the receiver [Array] backwards using an index.
@@ -91,6 +64,7 @@ inline fun <T> SparseIntArray.asSequence(): Sequence<Int> = SparseIntArraySequen
 
 @PublishedApi
 internal class SparseArraySequence<T>(private val a: SparseArray<T>) : Sequence<T> {
+
     override fun iterator(): Iterator<T> = SparseArrayIterator()
 
     private inner class SparseArrayIterator : Iterator<T> {
@@ -108,6 +82,7 @@ internal class SparseArraySequence<T>(private val a: SparseArray<T>) : Sequence<
 
 @PublishedApi
 internal class SparseBooleanArraySequence(private val a: SparseBooleanArray) : Sequence<Boolean> {
+
     override fun iterator(): Iterator<Boolean> = SparseIntArrayIterator()
 
     private inner class SparseIntArrayIterator : Iterator<Boolean> {
@@ -125,6 +100,7 @@ internal class SparseBooleanArraySequence(private val a: SparseBooleanArray) : S
 
 @PublishedApi
 internal class SparseIntArraySequence(private val a: SparseIntArray) : Sequence<Int> {
+
     override fun iterator(): Iterator<Int> = SparseIntArrayIterator()
 
     private inner class SparseIntArrayIterator : Iterator<Int> {
