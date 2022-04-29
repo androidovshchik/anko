@@ -19,14 +19,8 @@ package org.jetbrains.anko.support.v4
 
 import android.app.ProgressDialog
 import android.content.DialogInterface
-import android.support.v4.app.Fragment
-import org.jetbrains.anko.AlertBuilder
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.indeterminateProgressDialog
-import org.jetbrains.anko.longToast
-import org.jetbrains.anko.progressDialog
-import org.jetbrains.anko.selector
-import org.jetbrains.anko.toast
+import androidx.fragment.app.Fragment
+import org.jetbrains.anko.*
 
 inline fun Fragment.toast(textResource: Int) = requireActivity().toast(textResource)
 
@@ -37,30 +31,30 @@ inline fun Fragment.longToast(textResource: Int) = requireActivity().longToast(t
 inline fun Fragment.longToast(text: CharSequence) = requireActivity().longToast(text)
 
 inline fun Fragment.selector(
-        title: CharSequence? = null,
-        items: List<CharSequence>,
-        noinline onClick: (DialogInterface, Int) -> Unit
+    title: CharSequence? = null,
+    items: List<CharSequence>,
+    noinline onClick: (DialogInterface, Int) -> Unit
 ): Unit = requireActivity().selector(title, items, onClick)
 
 inline fun Fragment.alert(
-        message: String,
-        title: String? = null,
-        noinline init: (AlertBuilder<DialogInterface>.() -> Unit)? = null
+    message: String,
+    title: String? = null,
+    noinline init: (AlertBuilder<DialogInterface>.() -> Unit)? = null
 ) = requireActivity().alert(message, title, init)
 
 inline fun Fragment.alert(
-        message: Int,
-        title: Int? = null,
-        noinline init: (AlertBuilder<DialogInterface>.() -> Unit)? = null
+    message: Int,
+    title: Int? = null,
+    noinline init: (AlertBuilder<DialogInterface>.() -> Unit)? = null
 ) = requireActivity().alert(message, title, init)
 
 inline fun Fragment.alert(noinline init: AlertBuilder<DialogInterface>.() -> Unit) = requireActivity().alert(init)
 
 @Deprecated(message = "Android progress dialogs are deprecated")
 inline fun Fragment.progressDialog(
-        message: String? = null,
-        title: String? = null,
-        noinline init: (ProgressDialog.() -> Unit)? = null
+    message: String? = null,
+    title: String? = null,
+    noinline init: (ProgressDialog.() -> Unit)? = null
 ) = requireActivity().progressDialog(message, title, init)
 
 @Deprecated(message = "Android progress dialogs are deprecated")
