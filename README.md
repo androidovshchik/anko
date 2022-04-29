@@ -26,44 +26,6 @@ Anko consists of several parts:
 * Logging ([wiki](https://github.com/Kotlin/anko/wiki/Anko-Commons-–-Logging));
 * Resources and dimensions ([wiki](https://github.com/Kotlin/anko/wiki/Anko-Commons-–-Misc)).
 
-## Anko Layouts ([wiki](https://github.com/Kotlin/anko/wiki/Anko-Layouts))
-
-*Anko Layouts* is a DSL for writing dynamic Android layouts. Here is a simple UI written with Anko DSL:
-
-```kotlin
-verticalLayout {
-    val name = editText()
-    button("Say Hello") {
-        onClick { toast("Hello, ${name.text}!") }
-    }
-}
-```
-
-The code above creates a button inside a `LinearLayout` and attaches an `OnClickListener` to that button. Moreover, `onClick` accepts a [`suspend` lambda](https://kotlinlang.org/docs/reference/coroutines.html), so you can write your asynchronous code right inside the listener!
-
-Note that this is the complete layout code. No XML is required!
-
-Anko has a [DSL for ConstraintLayout](https://github.com/Kotlin/anko/wiki/ConstraintLayout) since v0.10.4
-
-<img src="doc/helloworld.png" alt="Hello world" height="90" width="373" />
-
-There is also a [plugin](https://github.com/Kotlin/anko/wiki/Anko-Layouts#anko-support-plugin) for Android Studio that supports previewing Anko DSL layouts.
-
-## Anko SQLite ([wiki](https://github.com/Kotlin/anko/wiki/Anko-SQLite))
-
-Have you ever been tired of parsing SQLite query results using Android cursors? *Anko SQLite* provides lots of helpers to simplify working with SQLite databases.
-
-For example, here is how you can fetch the list of users with a particular name:
-
-```kotlin
-fun getUsers(db: ManagedSQLiteOpenHelper): List<User> = db.use {
-    db.select("Users")
-            .whereSimple("family_name = ?", "John")
-            .doExec()
-            .parseList(UserParser)
-}
-```
-
 ## Anko Coroutines ([wiki](https://github.com/Kotlin/anko/wiki/Anko-Coroutines))
 
 *Anko Coroutines* is based on the [`kotlinx.coroutines`](https://github.com/kotlin/kotlinx.coroutines) library and provides:

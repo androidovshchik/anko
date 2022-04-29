@@ -3,7 +3,6 @@ include ':robolectricTests'
 
 include ':static:commons-base'
 include ':static:platform-base'
-include ':static:sqlite-base'
 include ':static:design-base'
 include ':static:supportV4-base'
 include ':static:appcompatV7-base'
@@ -48,7 +47,6 @@ include ':generated:anko-sdk27-coroutines'
 include ':generated:anko-sdk28'
 include ':generated:anko-sdk28-listeners'
 include ':generated:anko-sdk28-coroutines'
-include ':generated:anko-sqlite'
 include ':generated:anko-support-v4'
 include ':generated:anko-support-v4-commons'
 include ':generated:anko-coroutines'
@@ -59,7 +57,6 @@ project(':robolectricTests').projectDir = new File(rootDir, 'anko/library/robole
 project(':static').projectDir = new File(rootDir, 'anko/library/static')
 project(':static:commons-base').projectDir = new File(rootDir, 'anko/library/static/commons')
 project(':static:platform-base').projectDir = new File(rootDir, 'anko/library/static/platform')
-project(':static:sqlite-base').projectDir = new File(rootDir, 'anko/library/static/sqlite')
 project(':static:design-base').projectDir = new File(rootDir, 'anko/library/static/design')
 project(':static:supportV4-base').projectDir = new File(rootDir, 'anko/library/static/supportV4')
 project(':static:appcompatV7-base').projectDir = new File(rootDir, 'anko/library/static/appcompatV7')
@@ -104,7 +101,6 @@ project(':generated:anko-sdk27-coroutines').projectDir = new File(rootDir, 'anko
 project(':generated:anko-sdk28').projectDir = new File(rootDir, 'anko/library/generated/sdk28')
 project(':generated:anko-sdk28-listeners').projectDir = new File(rootDir, 'anko/library/generated/sdk28-listeners')
 project(':generated:anko-sdk28-coroutines').projectDir = new File(rootDir, 'anko/library/generated/sdk28-coroutines')
-project(':generated:anko-sqlite').projectDir = new File(rootDir, 'anko/library/generated/sqlite')
 project(':generated:anko-support-v4').projectDir = new File(rootDir, 'anko/library/generated/support-v4')
 project(':generated:anko-support-v4-commons').projectDir = new File(rootDir, 'anko/library/generated/support-v4-commons')
 project(':generated:anko-coroutines').projectDir = new File(rootDir, 'anko/library/generated/coroutines')
