@@ -4,75 +4,72 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.SubMenu
 
-
 /**
  * Create a plain menu item
  */
 inline fun Menu.item(title: CharSequence, /*@DrawableRes*/ icon: Int = 0, checkable: Boolean = false): MenuItem =
-        add(title).apply {
-            setIcon(icon)
-            isCheckable = checkable
-        }
+    add(title).apply {
+        setIcon(icon)
+        isCheckable = checkable
+    }
 
 /**
  * Create a menu item and configure it
  */
 inline fun Menu.item(title: CharSequence, /*@DrawableRes*/ icon: Int = 0, checkable: Boolean = false, configure: MenuItem.() -> Unit): MenuItem =
-        add(title).apply {
-            setIcon(icon)
-            isCheckable = checkable
-            configure()
-        }
+    add(title).apply {
+        setIcon(icon)
+        isCheckable = checkable
+        configure()
+    }
 
 /**
  * Create a menu item with title from resources
  */
 inline fun Menu.item(/*@StringRes*/ titleRes: Int, /*@DrawableRes*/ icon: Int = 0, checkable: Boolean = false): MenuItem =
-        add(titleRes).apply {
-            setIcon(icon)
-            isCheckable = checkable
-        }
+    add(titleRes).apply {
+        setIcon(icon)
+        isCheckable = checkable
+    }
 
 /**
  * Create a menu item with title from resources and configure it
  */
 inline fun Menu.item(/*@StringRes*/ titleRes: Int, /*@DrawableRes*/ icon: Int = 0, checkable: Boolean = false, configure: MenuItem.() -> Unit): MenuItem =
-        add(titleRes).apply {
-            setIcon(icon)
-            isCheckable = checkable
-            configure()
-        }
-
+    add(titleRes).apply {
+        setIcon(icon)
+        isCheckable = checkable
+        configure()
+    }
 
 /**
  * Create a submenu
  */
 inline fun Menu.subMenu(title: CharSequence): SubMenu =
-        addSubMenu(title)
+    addSubMenu(title)
 
 /**
  * Create a submenu and configure it
  */
 inline fun Menu.subMenu(title: CharSequence, configure: SubMenu.() -> Unit): SubMenu =
-        addSubMenu(title).apply { configure() }
+    addSubMenu(title).apply { configure() }
 
 /**
  * Create a submenu with title from resources
  */
 inline fun Menu.subMenu(/*@StringRes*/ titleRes: Int): SubMenu =
-        addSubMenu(titleRes)
+    addSubMenu(titleRes)
 
 /**
  * Create a submenu with title from resources and configure it
  */
 inline fun Menu.subMenu(/*@StringRes*/ titleRes: Int, configure: SubMenu.() -> Unit): SubMenu =
-        addSubMenu(titleRes).apply { configure() }
-
+    addSubMenu(titleRes).apply { configure() }
 
 /**
  * Create a checkable menu item for use in NavigationView
  */
-inline fun Menu.navigationItem(title: CharSequence, /*@DrawableRes*/ icon: Int = 0): Unit {
+inline fun Menu.navigationItem(title: CharSequence, /*@DrawableRes*/ icon: Int = 0) {
     add(title).apply {
         setIcon(icon)
         isCheckable = true
@@ -117,10 +114,9 @@ inline fun Menu.navigationItem(/*@StringRes*/ titleRes: Int, /*@DrawableRes*/ ic
     }
 }
 
-
 /**
  * Set OnClickListener on a menu item
  */
-inline fun MenuItem.onClick(consume: Boolean = true, crossinline action: () -> Unit): Unit {
+inline fun MenuItem.onClick(consume: Boolean = true, crossinline action: () -> Unit) {
     setOnMenuItemClickListener { action(); consume }
 }

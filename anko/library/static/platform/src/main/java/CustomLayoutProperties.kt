@@ -22,8 +22,8 @@ import org.jetbrains.anko.internals.AnkoInternals.NO_GETTER
 import org.jetbrains.anko.internals.AnkoInternals.noGetter
 import kotlin.DeprecationLevel.ERROR
 
-val matchParent: Int = android.view.ViewGroup.LayoutParams.MATCH_PARENT
-val wrapContent: Int = android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+const val matchParent: Int = ViewGroup.LayoutParams.MATCH_PARENT
+const val wrapContent: Int = ViewGroup.LayoutParams.WRAP_CONTENT
 
 var ViewGroup.MarginLayoutParams.verticalMargin: Int
     @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
@@ -34,7 +34,10 @@ var ViewGroup.MarginLayoutParams.verticalMargin: Int
 
 var ViewGroup.MarginLayoutParams.horizontalMargin: Int
     @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
-    set(v) { leftMargin = v; rightMargin = v }
+    set(v) {
+        leftMargin = v;
+        rightMargin = v
+    }
 
 var ViewGroup.MarginLayoutParams.margin: Int
     @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()

@@ -17,8 +17,8 @@
 @file:Suppress("unused")
 package org.jetbrains.anko
 
-import android.os.Build
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
@@ -51,19 +51,9 @@ var View.bottomPadding: Int
     inline get() = paddingBottom
     set(value) = setPadding(paddingLeft, paddingTop, paddingRight, value)
 
-@Deprecated("Use horizontalPadding instead", ReplaceWith("horizontalPadding"))
-var View.paddingHorizontal: Int
-    @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
-    set(value) = setPadding(value, paddingTop, value, paddingBottom)
-
 var View.horizontalPadding: Int
     @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
     set(value) = setPadding(value, paddingTop, value, paddingBottom)
-
-@Deprecated("Use verticalPadding instead", ReplaceWith("verticalPadding"))
-var View.paddingVertical: Int
-    @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
-    set(value) = setPadding(paddingLeft, value, paddingRight, value)
 
 var View.verticalPadding: Int
     @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
