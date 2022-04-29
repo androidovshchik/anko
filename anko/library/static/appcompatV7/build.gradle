@@ -1,6 +1,6 @@
 apply from: '../../library.gradle'
 
 dependencies {
-    api "com.android.support:appcompat-v7:$SUPPORT_ARTIFACT_VERSION"
+    api 'androidx.appcompat:appcompat:1.4.1'
     api project(':static:commons-base')
 }
